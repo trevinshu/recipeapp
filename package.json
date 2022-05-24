@@ -1,0 +1,16 @@
+{
+  "name": "recipeapp",
+  "version": "1.0.0",
+  "description": "- Recipe App built with HTML, SCSS & Vanilla JavaScript that fetches a recipe based on the search input of an user. This application also allows users to search for recipes via a list of categories.",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "author": "Trevin Shu",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.52.1"
+  }
+}
