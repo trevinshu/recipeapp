@@ -123,12 +123,15 @@ main .searchContainer .searchInput:focus {
 }
 main .searchContainer .searchBtn {
   width: 100%;
-  background-color: #ffadcb;
+  background-color: #adc6ff;
   border-radius: 10px;
   padding: 0.5rem;
   text-transform: uppercase;
   font-weight: 700;
-  letter-spacing: 8px;
+  letter-spacing: 3px;
+}
+main .searchContainer .searchBtn:hover {
+  background-color: #8eb1ff;
 }
 main .categoryContainer {
   overflow: auto;
@@ -136,7 +139,7 @@ main .categoryContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0 1rem 2rem 1rem;
   gap: 1rem;
 }
 main .categoryContainer .categoryBtn {
@@ -147,12 +150,55 @@ main .categoryContainer .categoryBtn {
   text-transform: uppercase;
   text-decoration: none;
   color: #0b1b2d;
-  letter-spacing: 5px;
+  letter-spacing: 3px;
   font-weight: 400;
   cursor: pointer;
 }
 main .categoryContainer .categoryBtn:hover {
-  background-color: #ffadcb;
+  background-color: #adc6ff;
+}
+main .recipeContainer {
+  padding: 1rem;
+}
+main .recipeContainer .recipeItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main .recipeContainer .recipeItem img {
+  border-radius: 30px;
+  max-width: 100%;
+}
+main .recipeContainer .recipeItem .recipeContent {
+  transform: translateY(-50px);
+  padding: 1rem;
+  z-index: 10;
+  color: #0b1b2d;
+  background-color: #fefefe;
+  box-shadow: rgba(11, 27, 45, 0.24) 0px 3px 8px;
+}
+main .recipeContainer .recipeItem .recipeContent h2 {
+  padding-block: 0.75rem;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+main .recipeContainer .recipeItem .recipeContent p {
+  font-weight: 300;
+  letter-spacing: 3px;
+  padding-bottom: 1rem;
+}
+main .recipeContainer .recipeItem .recipeContent button {
+  width: 100%;
+  background-color: #adc6ff;
+  color: #0b1b2d;
+  border-radius: 10px;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=/main.77bb5cfd.css.map */
