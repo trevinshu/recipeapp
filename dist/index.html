@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/main.77bb5cfd.css">
+    <script src="/script.d573be0b.js" defer=""></script>
   <script src="/main.77bb5cfd.js"></script></head>
   <body>
     <header>
@@ -20,27 +21,29 @@
         <button id="searchBtn" class="searchBtn">Search</button>
       </div>
       <div class="categoryContainer">
-        <a class="categoryBtn" href="#">Beef</a>
-        <a class="categoryBtn" href="#">Breakfast</a>
-        <a class="categoryBtn" href="#">Chicken</a>
-        <a class="categoryBtn" href="#">Dessert</a>
-        <a class="categoryBtn" href="#">Lamb</a>
-        <a class="categoryBtn" href="#">Pasta</a>
-        <a class="categoryBtn" href="#">Pork</a>
-        <a class="categoryBtn" href="#">Seafood</a>
-        <a class="categoryBtn" href="#">Side</a>
-        <a class="categoryBtn" href="#">Starter</a>
-        <a class="categoryBtn" href="#">Vegetarian</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Beef</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Breakfast</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Chicken</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Dessert</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Lamb</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Pasta</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Pork</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Seafood</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Side</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Starter</a>
+        <a class="categoryBtn" id="categoryBtn" href="#">Vegetarian</a>
       </div>
       <div class="recipeContainer" id="recipeContainer">
-        <div class="recipeItem">
-          <img src="https://dummyimage.com/600x400/000/fff" alt="">
+        <div class="modalContainer" id="modalContainer">
+          <div class="modalContent" id="modalContent"></div>
+        </div>
+        <!-- <div class="recipeItem">
+          <img src="https://dummyimage.com/600x400/000/fff" alt="" />
           <div class="recipeContent">
             <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, dolorum?</h2>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis facilis ea tenetur soluta asperiores cumque.</p>
             <button href="#">Button</button>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
   </body>

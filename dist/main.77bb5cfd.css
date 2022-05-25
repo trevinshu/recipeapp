@@ -158,17 +158,12 @@ main .categoryContainer .categoryBtn:hover {
   background-color: #adc6ff;
 }
 main .recipeContainer {
-  padding: 1rem;
-}
-main .recipeContainer .recipeItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  margin: 1rem;
+  gap: 1rem;
 }
 main .recipeContainer .recipeItem img {
   border-radius: 30px;
-  max-width: 100%;
 }
 main .recipeContainer .recipeItem .recipeContent {
   transform: translateY(-50px);
@@ -180,6 +175,7 @@ main .recipeContainer .recipeItem .recipeContent {
 }
 main .recipeContainer .recipeItem .recipeContent h2 {
   padding-block: 0.75rem;
+  text-align: center;
   font-size: 1rem;
   letter-spacing: 3px;
   text-transform: uppercase;
