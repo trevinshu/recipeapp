@@ -144,6 +144,26 @@ main {
       }
     }
   }
+
+  .modalContainer {
+    display: none;
+    box-shadow: rgba(11, 27, 45, 0.24) 0px 3px 8px;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+
+    .modal {
+      position: absolute;
+      max-width: 100%;
+      height: 75vh;
+      margin-inline: 1rem;
+      border-radius: 10px;
+      margin-block: auto;
+      background-color: #fefefe;
+      box-shadow: rgba(11, 27, 45, 0.24) 0px 3px 8px;
+      inset: 0;
+    }
+  }
 }
 
 @media only screen and (min-width: 750px) {
