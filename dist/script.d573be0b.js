@@ -925,7 +925,7 @@ function _getRecipesByCategory() {
 
             if (meals) {
               meals.forEach(function (meal) {
-                html += "\n      <div class=\"recipeItem\">\n        <img src=\"".concat(meal.strMealThumb, "\" alt=\"\" />\n        <div class=\"recipeContent\">\n          <h2>").concat(meal.strMeal, "</h2>\n          <button id=\"viewRecipeBtn\" href=\"#\" data-id=\"").concat(meal.idMeal, "\">View Recipe</button>\n        </div>\n      </div>\n      ");
+                html += "\n      <div class=\"recipeItem\" data-id=\"".concat(meal.idMeal, "\">\n        <img src=\"").concat(meal.strMealThumb, "\" alt=\"\" />\n        <div class=\"recipeContent\">\n          <h2>").concat(meal.strMeal, "</h2>\n          <button id=\"viewRecipeBtn\" class=\"viewRecipeBtn\" href=\"#\">View Recipe</button>\n        </div>\n      </div>\n      ");
               });
             }
 
@@ -939,6 +939,71 @@ function _getRecipesByCategory() {
     }, _callee);
   }));
   return _getRecipesByCategory.apply(this, arguments);
+}
+
+recipeContainer.addEventListener('click', viewRecipe);
+
+function viewRecipe(_x2) {
+  return _viewRecipe.apply(this, arguments);
+}
+
+function _viewRecipe() {
+  _viewRecipe = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+    var recipeItem, response, data, item;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            if (!e.target.classList.contains('viewRecipeBtn')) {
+              _context2.next = 10;
+              break;
+            }
+
+            recipeItem = e.target.parentElement.parentElement;
+            _context2.next = 4;
+            return fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=".concat(recipeItem.dataset.id));
+
+          case 4:
+            response = _context2.sent;
+            _context2.next = 7;
+            return response.json();
+
+          case 7:
+            data = _context2.sent;
+            item = data.meals;
+            mealRecipeModal(item);
+
+          case 10:
+            e.preventDefault();
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _viewRecipe.apply(this, arguments);
+}
+
+function mealRecipeModal(item) {
+  var modalContainer = document.getElementById('modalContainer');
+  var modalContent = document.getElementById('modalContent');
+  item = item[0];
+  var html = "\n  <h2>".concat(item.strMeal, "</h2>\n  <p>").concat(item.strInstructions, "</p>\n  ");
+  modalContent.innerHTML = html;
+  modalContainer.classList.add('showModal'); // document.body.style.overflow = 'hidden';
+  // document.body.style.height = '100vh';
+}
+
+var closeBtn = document.getElementById('closeBtn');
+closeBtn.addEventListener('click', closeModal);
+
+function closeModal(e) {
+  var modalContainer = document.getElementById('modalContainer');
+  modalContainer.classList.remove('showModal');
+  document.body.style.overflow = 'auto';
+  e.preventDefault();
 }
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -968,7 +1033,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63281" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50935" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
