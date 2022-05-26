@@ -30,6 +30,5 @@ async function getRecipesByCategory(categoryName) {
       `;
     });
   }
-
   recipeContainer.innerHTML = html;
 }

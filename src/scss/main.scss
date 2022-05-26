@@ -82,6 +82,7 @@ main {
       box-shadow: rgba(11, 27, 45, 0.24) 0px 3px 8px;
       text-transform: uppercase;
       text-decoration: none;
+      text-align: center;
       color: #0b1b2d;
       letter-spacing: 3px;
       font-weight: 400;
@@ -101,6 +102,7 @@ main {
     .recipeItem {
       img {
         border-radius: 30px;
+        width: 100%;
       }
 
       .recipeContent {
@@ -114,6 +116,7 @@ main {
           padding-block: 0.75rem;
           text-align: center;
           font-size: 1rem;
+
           letter-spacing: 3px;
           text-transform: uppercase;
         }
@@ -133,7 +136,42 @@ main {
           letter-spacing: 3px;
           text-decoration: none;
         }
+
+        button:hover {
+          background-color: darken(#adc6ff, 8);
+          transition: ease-in-out 0.2s;
+        }
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  main {
+    .recipeContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  main {
+    .searchContainer {
+      .searchInput {
+        width: 50%;
+      }
+
+      .searchBtn {
+        width: 50%;
+      }
+    }
+
+    .categoryContainer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .recipeContainer {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }

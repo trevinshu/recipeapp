@@ -8,8 +8,11 @@
 
 ## View Live:
 
-## Tools/Packages Used:
+## Languages, Tools, Techniques & Packages Used:
 
+- Flexbox
+- CSS Grid
+- CSS
 - JavaScript
 - SCSS
 - Google Fonts

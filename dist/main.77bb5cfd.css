@@ -149,6 +149,7 @@ main .categoryContainer .categoryBtn {
   box-shadow: rgba(11, 27, 45, 0.24) 0px 3px 8px;
   text-transform: uppercase;
   text-decoration: none;
+  text-align: center;
   color: #0b1b2d;
   letter-spacing: 3px;
   font-weight: 400;
@@ -164,6 +165,7 @@ main .recipeContainer {
 }
 main .recipeContainer .recipeItem img {
   border-radius: 30px;
+  width: 100%;
 }
 main .recipeContainer .recipeItem .recipeContent {
   transform: translateY(-50px);
@@ -195,6 +197,31 @@ main .recipeContainer .recipeItem .recipeContent button {
   font-weight: 700;
   letter-spacing: 3px;
   text-decoration: none;
+}
+main .recipeContainer .recipeItem .recipeContent button:hover {
+  background-color: #84aaff;
+  transition: ease-in-out 0.2s;
+}
+
+@media only screen and (min-width: 750px) {
+  main .recipeContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (min-width: 1200px) {
+  main .searchContainer .searchInput {
+    width: 50%;
+  }
+  main .searchContainer .searchBtn {
+    width: 50%;
+  }
+  main .categoryContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  main .recipeContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /*# sourceMappingURL=/main.77bb5cfd.css.map */
