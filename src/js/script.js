@@ -51,16 +51,33 @@ async function viewRecipe(e) {
 function mealRecipeModal(item) {
   let modalContainer = document.getElementById('modalContainer');
   let modalContent = document.getElementById('modalContent');
-
+  const ingredients = [];
   item = item[0];
+  for (let i = 1; i <= 20; i++) {
+    if (item[`strIngredient${i}`]) {
+      ingredients.push(`${item[`strMeasure${i}`]} = ${item[`strIngredient${i}`]}`);
+    } else {
+      break;
+    }
+  }
+  const instructions = item.strInstructions;
   let html = `
   <h2>${item.strMeal}</h2>
-  <p>${item.strInstructions}</p>
+  <p><span>Cuisine: </span>${item.strArea}</p>
+  <img src="${item.strMealThumb}"/>
+  <h3>Ingredients:</h3>
+  <ul>
+    ${ingredients.map((ingredient) => `<li>${ingredient}</li>`).join('')}
+  </ul>
+  <h3>Directions:</h3>
+  <p>${instructions.split('.').join('. <br/> <br/>')}</p>
+  
   `;
 
   modalContent.innerHTML = html;
 
   modalContainer.classList.add('showModal');
+  document.body.style.overflow = 'hidden';
   // document.body.style.overflow = 'hidden';
   // document.body.style.height = '100vh';
 }
@@ -71,6 +88,6 @@ closeBtn.addEventListener('click', closeModal);
 function closeModal(e) {
   let modalContainer = document.getElementById('modalContainer');
   modalContainer.classList.remove('showModal');
-  document.body.style.overflow = 'auto';
+  document.body.style.overflow = 'scroll';
   e.preventDefault();
 }

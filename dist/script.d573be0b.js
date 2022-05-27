@@ -989,10 +989,24 @@ function _viewRecipe() {
 function mealRecipeModal(item) {
   var modalContainer = document.getElementById('modalContainer');
   var modalContent = document.getElementById('modalContent');
+  var ingredients = [];
   item = item[0];
-  var html = "\n  <h2>".concat(item.strMeal, "</h2>\n  <p>").concat(item.strInstructions, "</p>\n  ");
+
+  for (var i = 1; i <= 20; i++) {
+    if (item["strIngredient".concat(i)]) {
+      ingredients.push("".concat(item["strMeasure".concat(i)], " = ").concat(item["strIngredient".concat(i)]));
+    } else {
+      break;
+    }
+  }
+
+  var instructions = item.strInstructions;
+  var html = "\n  <h2>".concat(item.strMeal, "</h2>\n  <p><span>Cuisine: </span>").concat(item.strArea, "</p>\n  <img src=\"").concat(item.strMealThumb, "\"/>\n  <h3>Ingredients:</h3>\n  <ul>\n    ").concat(ingredients.map(function (ingredient) {
+    return "<li>".concat(ingredient, "</li>");
+  }).join(''), "\n  </ul>\n  <h3>Directions:</h3>\n  <p>").concat(instructions.split('.').join('. <br/> <br/>'), "</p>\n  \n  ");
   modalContent.innerHTML = html;
-  modalContainer.classList.add('showModal'); // document.body.style.overflow = 'hidden';
+  modalContainer.classList.add('showModal');
+  document.body.style.overflow = 'hidden'; // document.body.style.overflow = 'hidden';
   // document.body.style.height = '100vh';
 }
 
@@ -1002,7 +1016,7 @@ closeBtn.addEventListener('click', closeModal);
 function closeModal(e) {
   var modalContainer = document.getElementById('modalContainer');
   modalContainer.classList.remove('showModal');
-  document.body.style.overflow = 'auto';
+  document.body.style.overflow = 'scroll';
   e.preventDefault();
 }
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -1033,7 +1047,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50935" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61248" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
