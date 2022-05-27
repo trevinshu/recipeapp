@@ -994,20 +994,20 @@ function mealRecipeModal(item) {
 
   for (var i = 1; i <= 20; i++) {
     if (item["strIngredient".concat(i)]) {
-      ingredients.push("".concat(item["strMeasure".concat(i)], " = ").concat(item["strIngredient".concat(i)]));
+      ingredients.push("".concat(item["strMeasure".concat(i)], " - ").concat(item["strIngredient".concat(i)]));
     } else {
       break;
     }
   }
 
+  console.log(item.strYoutube);
   var instructions = item.strInstructions;
   var html = "\n  <h2>".concat(item.strMeal, "</h2>\n  <p><span>Cuisine: </span>").concat(item.strArea, "</p>\n  <img src=\"").concat(item.strMealThumb, "\"/>\n  <h3>Ingredients:</h3>\n  <ul>\n    ").concat(ingredients.map(function (ingredient) {
     return "<li>".concat(ingredient, "</li>");
-  }).join(''), "\n  </ul>\n  <h3>Directions:</h3>\n  <p>").concat(instructions.split('.').join('. <br/> <br/>'), "</p>\n  \n  ");
+  }).join(''), "\n  </ul>\n  <h3>Directions:</h3>\n  <p>").concat(instructions.split('.').join('. <br/> <br/>'), "</p>\n  <h3>Watch Recipe:</h3>\n  <div class=\"videoContainer\">\n    <iframe class=\"recipeVideo\" src=\"https://www.youtube.com/embed/").concat(item.strYoutube.slice(-11), "\" allow=\"fullscreen;\"></iframe>\n  </div>\n  ");
   modalContent.innerHTML = html;
   modalContainer.classList.add('showModal');
-  document.body.style.overflow = 'hidden'; // document.body.style.overflow = 'hidden';
-  // document.body.style.height = '100vh';
+  document.body.style.overflow = 'hidden';
 }
 
 var closeBtn = document.getElementById('closeBtn');

@@ -55,11 +55,12 @@ function mealRecipeModal(item) {
   item = item[0];
   for (let i = 1; i <= 20; i++) {
     if (item[`strIngredient${i}`]) {
-      ingredients.push(`${item[`strMeasure${i}`]} = ${item[`strIngredient${i}`]}`);
+      ingredients.push(`${item[`strMeasure${i}`]} - ${item[`strIngredient${i}`]}`);
     } else {
       break;
     }
   }
+  console.log(item.strYoutube);
   const instructions = item.strInstructions;
   let html = `
   <h2>${item.strMeal}</h2>
@@ -71,15 +72,16 @@ function mealRecipeModal(item) {
   </ul>
   <h3>Directions:</h3>
   <p>${instructions.split('.').join('. <br/> <br/>')}</p>
-  
+  <h3>Watch Recipe:</h3>
+  <div class="videoContainer">
+    <iframe class="recipeVideo" src="https://www.youtube.com/embed/${item.strYoutube.slice(-11)}" allow="fullscreen;"></iframe>
+  </div>
   `;
 
   modalContent.innerHTML = html;
 
   modalContainer.classList.add('showModal');
   document.body.style.overflow = 'hidden';
-  // document.body.style.overflow = 'hidden';
-  // document.body.style.height = '100vh';
 }
 
 const closeBtn = document.getElementById('closeBtn');
