@@ -888,6 +888,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var categoryBtn = document.querySelectorAll('#categoryBtn');
+var searchBtn = document.getElementById('searchBtn');
+var searchInput = document.getElementById('searchInput');
 var recipeContainer = document.getElementById('recipeContainer');
 categoryBtn.forEach(function (categoryItem) {
   return categoryItem.addEventListener('click', categoryClick);
@@ -941,35 +943,84 @@ function _getRecipesByCategory() {
   return _getRecipesByCategory.apply(this, arguments);
 }
 
-recipeContainer.addEventListener('click', viewRecipe);
+searchBtn.addEventListener('click', searchBtnClick);
 
-function viewRecipe(_x2) {
-  return _viewRecipe.apply(this, arguments);
+function searchBtnClick(e) {
+  e.preventDefault();
+  getRecipeBySearchTerm(searchInput.value.toLowerCase());
 }
 
-function _viewRecipe() {
-  _viewRecipe = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-    var recipeItem, response, data, item;
+function getRecipeBySearchTerm(_x2) {
+  return _getRecipeBySearchTerm.apply(this, arguments);
+}
+
+function _getRecipeBySearchTerm() {
+  _getRecipeBySearchTerm = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(searchTerm) {
+    var response, data, searchResponse, html;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            _context2.next = 2;
+            return fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=".concat(searchTerm));
+
+          case 2:
+            response = _context2.sent;
+            _context2.next = 5;
+            return response.json();
+
+          case 5:
+            data = _context2.sent;
+            searchResponse = data.meals.slice(0, 10);
+            html = '';
+
+            if (searchResponse) {
+              searchResponse.forEach(function (meal) {
+                html += "\n      <div class=\"recipeItem\" data-id=\"".concat(meal.idMeal, "\">\n        <img src=\"").concat(meal.strMealThumb, "\" alt=\"\" />\n        <div class=\"recipeContent\">\n          <h2>").concat(meal.strMeal, "</h2>\n          <button id=\"viewRecipeBtn\" class=\"viewRecipeBtn\" href=\"#\">View Recipe</button>\n        </div>\n      </div>\n      ");
+              });
+            }
+
+            recipeContainer.innerHTML = html;
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+  return _getRecipeBySearchTerm.apply(this, arguments);
+}
+
+recipeContainer.addEventListener('click', viewRecipe);
+
+function viewRecipe(_x3) {
+  return _viewRecipe.apply(this, arguments);
+}
+
+function _viewRecipe() {
+  _viewRecipe = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
+    var recipeItem, response, data, item;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
             if (!e.target.classList.contains('viewRecipeBtn')) {
-              _context2.next = 10;
+              _context3.next = 10;
               break;
             }
 
             recipeItem = e.target.parentElement.parentElement;
-            _context2.next = 4;
+            _context3.next = 4;
             return fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=".concat(recipeItem.dataset.id));
 
           case 4:
-            response = _context2.sent;
-            _context2.next = 7;
+            response = _context3.sent;
+            _context3.next = 7;
             return response.json();
 
           case 7:
-            data = _context2.sent;
+            data = _context3.sent;
             item = data.meals;
             mealRecipeModal(item);
 
@@ -978,10 +1029,10 @@ function _viewRecipe() {
 
           case 11:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
   return _viewRecipe.apply(this, arguments);
 }

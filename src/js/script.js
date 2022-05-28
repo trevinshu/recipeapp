@@ -1,6 +1,8 @@
 import { async } from 'regenerator-runtime/runtime';
 
 const categoryBtn = document.querySelectorAll('#categoryBtn');
+const searchBtn = document.getElementById('searchBtn');
+const searchInput = document.getElementById('searchInput');
 const recipeContainer = document.getElementById('recipeContainer');
 
 categoryBtn.forEach((categoryItem) => categoryItem.addEventListener('click', categoryClick));
@@ -19,6 +21,34 @@ async function getRecipesByCategory(categoryName) {
 
   if (meals) {
     meals.forEach((meal) => {
+      html += `
+      <div class="recipeItem" data-id="${meal.idMeal}">
+        <img src="${meal.strMealThumb}" alt="" />
+        <div class="recipeContent">
+          <h2>${meal.strMeal}</h2>
+          <button id="viewRecipeBtn" class="viewRecipeBtn" href="#">View Recipe</button>
+        </div>
+      </div>
+      `;
+    });
+  }
+  recipeContainer.innerHTML = html;
+}
+
+searchBtn.addEventListener('click', searchBtnClick);
+
+function searchBtnClick(e) {
+  e.preventDefault();
+  getRecipeBySearchTerm(searchInput.value.toLowerCase());
+}
+async function getRecipeBySearchTerm(searchTerm) {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+  const data = await response.json();
+  const searchResponse = data.meals.slice(0, 10);
+  let html = '';
+
+  if (searchResponse) {
+    searchResponse.forEach((meal) => {
       html += `
       <div class="recipeItem" data-id="${meal.idMeal}">
         <img src="${meal.strMealThumb}" alt="" />
