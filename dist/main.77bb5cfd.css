@@ -385,6 +385,7 @@ main .showModal {
   main .modalContainer .modal {
     box-shadow: rgba(11, 27, 45, 0.24);
     padding: 2rem;
+    margin-bottom: 3rem;
     width: 75vw;
     background-color: #fefefe;
     border-radius: 2rem;
@@ -393,6 +394,21 @@ main .showModal {
     font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: 3px;
+  }
+}
+@media only screen and (min-width: 1900px) {
+  main .modalContainer .closeBtn {
+    right: 300px;
+  }
+}
+@media only screen and (min-width: 2250px) {
+  main .modalContainer .closeBtn {
+    right: 350px;
+  }
+}
+@media only screen and (min-width: 2600px) {
+  main .modalContainer .closeBtn {
+    right: 400px;
   }
 }
 

@@ -381,6 +381,7 @@ main {
       .modal {
         box-shadow: rgba(11, 27, 45, 0.24);
         padding: 2rem;
+        margin-bottom: 3rem;
         width: 75vw;
         background-color: #fefefe;
         border-radius: 2rem;
@@ -392,6 +393,39 @@ main {
             letter-spacing: 3px;
           }
         }
+      }
+    }
+  }
+}
+
+//Media Query for when the page is greater than or equal to 1900px
+@media only screen and (min-width: 1900px) {
+  main {
+    .modalContainer {
+      .closeBtn {
+        right: 300px;
+      }
+    }
+  }
+}
+
+//Media Query for when the page is greater than or equal to 2250px
+@media only screen and (min-width: 2250px) {
+  main {
+    .modalContainer {
+      .closeBtn {
+        right: 350px;
+      }
+    }
+  }
+}
+
+//Media Query for when the page is greater than or equal to 2600px
+@media only screen and (min-width: 2600px) {
+  main {
+    .modalContainer {
+      .closeBtn {
+        right: 400px;
       }
     }
   }
