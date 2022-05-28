@@ -255,6 +255,7 @@ main .modalContainer .modal {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 }
 main .modalContainer .modal .modalContent h2 {
   text-align: center;
