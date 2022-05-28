@@ -887,23 +887,31 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//Select containers, inputs & buttons
 var categoryBtn = document.querySelectorAll('#categoryBtn');
 var searchBtn = document.getElementById('searchBtn');
 var searchInput = document.getElementById('searchInput');
 var recipeContainer = document.getElementById('recipeContainer');
+var closeBtn = document.getElementById('closeBtn'); //Get event listeners
+
 categoryBtn.forEach(function (categoryItem) {
   return categoryItem.addEventListener('click', categoryClick);
 });
+searchBtn.addEventListener('click', searchBtnClick);
+recipeContainer.addEventListener('click', viewRecipe);
+closeBtn.addEventListener('click', closeModal); //Handle Category Click
 
 function categoryClick(e) {
   var categoryName = e.target.innerText.toLowerCase();
   getRecipesByCategory(categoryName);
   e.preventDefault();
-}
+} //Get the data for the selected category
+
 
 function getRecipesByCategory(_x) {
   return _getRecipesByCategory.apply(this, arguments);
-}
+} //Handle search button click
+
 
 function _getRecipesByCategory() {
   _getRecipesByCategory = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(categoryName) {
@@ -912,15 +920,16 @@ function _getRecipesByCategory() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            _context.prev = 0;
+            _context.next = 3;
             return fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=".concat(categoryName));
 
-          case 2:
+          case 3:
             response = _context.sent;
-            _context.next = 5;
+            _context.next = 6;
             return response.json();
 
-          case 5:
+          case 6:
             data = _context.sent;
             meals = data.meals.slice(0, 10);
             html = '';
@@ -929,30 +938,39 @@ function _getRecipesByCategory() {
               meals.forEach(function (meal) {
                 html += "\n      <div class=\"recipeItem\" data-id=\"".concat(meal.idMeal, "\">\n        <img src=\"").concat(meal.strMealThumb, "\" alt=\"\" />\n        <div class=\"recipeContent\">\n          <h2>").concat(meal.strMeal, "</h2>\n          <button id=\"viewRecipeBtn\" class=\"viewRecipeBtn\" href=\"#\">View Recipe</button>\n        </div>\n      </div>\n      ");
               });
+              recipeContainer.innerHTML = html;
             }
 
-            recipeContainer.innerHTML = html;
+            resultContainer('successMsg', '<i class="fa-solid fa-circle-check"></i>', "Search Results for ".concat(categoryName));
+            _context.next = 17;
+            break;
 
-          case 10:
+          case 13:
+            _context.prev = 13;
+            _context.t0 = _context["catch"](0);
+            recipeContainer.innerHTML = "";
+            resultContainer('errorMsg', '<i class="fa-solid fa-triangle-exclamation"></i>', 'No Data For The Entered Search Query.');
+
+          case 17:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[0, 13]]);
   }));
   return _getRecipesByCategory.apply(this, arguments);
 }
 
-searchBtn.addEventListener('click', searchBtnClick);
-
 function searchBtnClick(e) {
   e.preventDefault();
   getRecipeBySearchTerm(searchInput.value.toLowerCase());
-}
+} //Get the data for the searched recipe
+
 
 function getRecipeBySearchTerm(_x2) {
   return _getRecipeBySearchTerm.apply(this, arguments);
-}
+} //Get the data for the selected recipe
+
 
 function _getRecipeBySearchTerm() {
   _getRecipeBySearchTerm = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(searchTerm) {
@@ -961,15 +979,16 @@ function _getRecipeBySearchTerm() {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            _context2.prev = 0;
+            _context2.next = 3;
             return fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=".concat(searchTerm));
 
-          case 2:
+          case 3:
             response = _context2.sent;
-            _context2.next = 5;
+            _context2.next = 6;
             return response.json();
 
-          case 5:
+          case 6:
             data = _context2.sent;
             searchResponse = data.meals.slice(0, 10);
             html = '';
@@ -978,25 +997,33 @@ function _getRecipeBySearchTerm() {
               searchResponse.forEach(function (meal) {
                 html += "\n      <div class=\"recipeItem\" data-id=\"".concat(meal.idMeal, "\">\n        <img src=\"").concat(meal.strMealThumb, "\" alt=\"\" />\n        <div class=\"recipeContent\">\n          <h2>").concat(meal.strMeal, "</h2>\n          <button id=\"viewRecipeBtn\" class=\"viewRecipeBtn\" href=\"#\">View Recipe</button>\n        </div>\n      </div>\n      ");
               });
+              resultContainer('successMsg', '<i class="fa-solid fa-badge-check"></i>', "Search Results for ".concat(searchTerm));
+              recipeContainer.innerHTML = html;
             }
 
-            recipeContainer.innerHTML = html;
+            _context2.next = 16;
+            break;
 
-          case 10:
+          case 12:
+            _context2.prev = 12;
+            _context2.t0 = _context2["catch"](0);
+            recipeContainer.innerHTML = "";
+            resultContainer('errorMsg', '<i class="fa-solid fa-triangle-exclamation"></i>', 'No Data For The Entered Search Query.');
+
+          case 16:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2);
+    }, _callee2, null, [[0, 12]]);
   }));
   return _getRecipeBySearchTerm.apply(this, arguments);
 }
 
-recipeContainer.addEventListener('click', viewRecipe);
-
 function viewRecipe(_x3) {
   return _viewRecipe.apply(this, arguments);
-}
+} //Display Modal Content
+
 
 function _viewRecipe() {
   _viewRecipe = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
@@ -1059,17 +1086,35 @@ function mealRecipeModal(item) {
   modalContent.innerHTML = html;
   modalContainer.classList.add('showModal');
   document.body.style.overflow = 'hidden';
-}
+} //Close The Modal
 
-var closeBtn = document.getElementById('closeBtn');
-closeBtn.addEventListener('click', closeModal);
 
 function closeModal(e) {
   var modalContainer = document.getElementById('modalContainer');
   modalContainer.classList.remove('showModal');
   document.body.style.overflow = 'scroll';
   e.preventDefault();
+} //Notification for Search Result
+
+
+function resultContainer(className, icon, message) {
+  var msgContainer = document.getElementById('msgContainer');
+  msgContainer.innerHTML = "\n    <p class='alert ".concat(className, "'>").concat(icon, " ").concat(message, "</p>\n  ");
+  setTimeout(function () {
+    var alert = document.querySelector('.alert');
+    alert.remove();
+    msgContainer.innerHTML = '';
+  }, 5000);
+} //Footer Content
+
+
+function footerText() {
+  var footer = document.getElementById('footerContainer');
+  var date = new Date().getFullYear();
+  footer.innerHTML = "\n  <p>Designed & Developed by Trevin Shu &copy; ".concat(date, "</p>\n  ");
 }
+
+footerText();
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1098,7 +1143,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61248" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55559" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

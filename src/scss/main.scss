@@ -1,14 +1,18 @@
 @use '_reset';
 
+//Set base Font
 * {
   font-family: 'Lato', sans-serif;
 }
+
+//Base body Styling
 body {
   background-color: #fefefe;
   color: #0b1b2d;
   height: 100vh;
 }
 
+//Reset Buttons
 button {
   background: none;
   color: inherit;
@@ -19,6 +23,7 @@ button {
   outline: inherit;
 }
 
+//Header Styles
 header {
   display: flex;
   justify-content: center;
@@ -30,7 +35,9 @@ header {
   }
 }
 
+//Main Content Styles
 main {
+  //Search Container Styles
   .searchContainer {
     display: flex;
     justify-content: center;
@@ -74,6 +81,7 @@ main {
     }
   }
 
+  //Category Container Styles
   .categoryContainer {
     overflow: auto;
     white-space: nowrap;
@@ -102,6 +110,39 @@ main {
     }
   }
 
+  //Success/Error Message Styles
+  .msgContainer {
+    .successMsg {
+      background-color: #fff;
+      border-left: solid rgb(152, 245, 152) 10px;
+      border-radius: 0 1rem 1rem 0;
+      box-shadow: rgba(11, 27, 45, 0.24) 0px 3px 8px;
+      letter-spacing: 3px;
+      text-align: center;
+      padding: 1rem 2rem;
+      margin: 1rem;
+      text-transform: uppercase;
+    }
+
+    .errorMsg {
+      background-color: #fff;
+      border-left: solid rgb(226, 74, 100) 10px;
+      border-radius: 0 1rem 1rem 0;
+      box-shadow: rgba(11, 27, 45, 0.24) 0px 3px 8px;
+      letter-spacing: 3px;
+      text-align: center;
+      padding: 1rem 2rem;
+      margin: 1rem;
+      text-transform: uppercase;
+    }
+
+    i {
+      color: #0b1b2d;
+      padding-right: 0.5rem;
+    }
+  }
+
+  //Recipe Container Styles
   .recipeContainer {
     display: grid;
     margin: 1rem;
@@ -149,6 +190,7 @@ main {
     }
   }
 
+  //Modal Container Styles
   .modalContainer {
     position: fixed;
     top: 50%;
@@ -178,7 +220,8 @@ main {
       .modalContent {
         h2 {
           text-align: center;
-          text-transform: capitalize;
+          text-transform: uppercase;
+          letter-spacing: 3px;
           padding-inline: 1rem;
           padding-bottom: 1rem;
           text-decoration: underline solid #adc6ff 5px;
@@ -246,14 +289,39 @@ main {
   }
 }
 
+//Footer Container Styles
+.footerContainer {
+  position: fixed;
+  bottom: 0;
+  background-color: #fefefe;
+  text-align: center;
+  width: 100vw;
+  padding-block: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+//Media Query for when the page is greater than or equal to 750px
 @media only screen and (min-width: 750px) {
   main {
     .recipeContainer {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    .modalContainer {
+      .modal {
+        .modalContent {
+          h2 {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+          }
+        }
+      }
+    }
   }
 }
 
+//Media Query for when the page is greater than or equal to 1200px
 @media only screen and (min-width: 1200px) {
   header {
     img {
@@ -279,6 +347,15 @@ main {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
     }
+
+    .msgContainer {
+      margin: 0 auto;
+      width: 50vw;
+
+      .alert {
+        margin-bottom: 2rem;
+      }
+    }
     .recipeContainer {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -287,23 +364,27 @@ main {
       background-color: rgba(0, 0, 0, 0.75);
       height: calc(100vh + 5px);
       border-radius: 0;
+      display: grid;
+      place-items: center;
       .closeBtn {
         position: absolute;
         top: 40px;
-        right: 150px;
+        right: 270px;
         font-size: 2.5rem;
         color: #0b1b2d;
       }
       .modal {
         box-shadow: rgba(11, 27, 45, 0.24);
-        padding: 1rem;
-        margin: 1rem 5rem;
+        padding: 2rem;
+        width: 75vw;
         background-color: #fefefe;
         border-radius: 2rem;
 
         .modalContent {
           h2 {
             font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
           }
         }
       }

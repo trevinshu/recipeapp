@@ -1,27 +1,36 @@
 import { async } from 'regenerator-runtime/runtime';
 
+//Select containers, inputs & buttons
 const categoryBtn = document.querySelectorAll('#categoryBtn');
 const searchBtn = document.getElementById('searchBtn');
 const searchInput = document.getElementById('searchInput');
 const recipeContainer = document.getElementById('recipeContainer');
+const closeBtn = document.getElementById('closeBtn');
 
+//Get event listeners
 categoryBtn.forEach((categoryItem) => categoryItem.addEventListener('click', categoryClick));
+searchBtn.addEventListener('click', searchBtnClick);
+recipeContainer.addEventListener('click', viewRecipe);
+closeBtn.addEventListener('click', closeModal);
 
+//Handle Category Click
 function categoryClick(e) {
   const categoryName = e.target.innerText.toLowerCase();
   getRecipesByCategory(categoryName);
   e.preventDefault();
 }
 
+//Get the data for the selected category
 async function getRecipesByCategory(categoryName) {
-  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`);
-  const data = await response.json();
-  const meals = data.meals.slice(0, 10);
-  let html = '';
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`);
+    const data = await response.json();
+    const meals = data.meals.slice(0, 10);
+    let html = '';
 
-  if (meals) {
-    meals.forEach((meal) => {
-      html += `
+    if (meals) {
+      meals.forEach((meal) => {
+        html += `
       <div class="recipeItem" data-id="${meal.idMeal}">
         <img src="${meal.strMealThumb}" alt="" />
         <div class="recipeContent">
@@ -30,26 +39,33 @@ async function getRecipesByCategory(categoryName) {
         </div>
       </div>
       `;
-    });
+      });
+      recipeContainer.innerHTML = html;
+    }
+    resultContainer('successMsg', '<i class="fa-solid fa-circle-check"></i>', `Search Results for ${categoryName}`);
+  } catch {
+    recipeContainer.innerHTML = ``;
+    resultContainer('errorMsg', '<i class="fa-solid fa-triangle-exclamation"></i>', 'No Data For The Entered Search Query.');
   }
-  recipeContainer.innerHTML = html;
 }
 
-searchBtn.addEventListener('click', searchBtnClick);
-
+//Handle search button click
 function searchBtnClick(e) {
   e.preventDefault();
   getRecipeBySearchTerm(searchInput.value.toLowerCase());
 }
-async function getRecipeBySearchTerm(searchTerm) {
-  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
-  const data = await response.json();
-  const searchResponse = data.meals.slice(0, 10);
-  let html = '';
 
-  if (searchResponse) {
-    searchResponse.forEach((meal) => {
-      html += `
+//Get the data for the searched recipe
+async function getRecipeBySearchTerm(searchTerm) {
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+    const data = await response.json();
+    const searchResponse = data.meals.slice(0, 10);
+    let html = '';
+
+    if (searchResponse) {
+      searchResponse.forEach((meal) => {
+        html += `
       <div class="recipeItem" data-id="${meal.idMeal}">
         <img src="${meal.strMealThumb}" alt="" />
         <div class="recipeContent">
@@ -58,13 +74,17 @@ async function getRecipeBySearchTerm(searchTerm) {
         </div>
       </div>
       `;
-    });
+      });
+      resultContainer('successMsg', '<i class="fa-solid fa-badge-check"></i>', `Search Results for ${searchTerm}`);
+      recipeContainer.innerHTML = html;
+    }
+  } catch {
+    recipeContainer.innerHTML = ``;
+    resultContainer('errorMsg', '<i class="fa-solid fa-triangle-exclamation"></i>', 'No Data For The Entered Search Query.');
   }
-  recipeContainer.innerHTML = html;
 }
 
-recipeContainer.addEventListener('click', viewRecipe);
-
+//Get the data for the selected recipe
 async function viewRecipe(e) {
   if (e.target.classList.contains('viewRecipeBtn')) {
     let recipeItem = e.target.parentElement.parentElement;
@@ -78,6 +98,7 @@ async function viewRecipe(e) {
   e.preventDefault();
 }
 
+//Display Modal Content
 function mealRecipeModal(item) {
   let modalContainer = document.getElementById('modalContainer');
   let modalContent = document.getElementById('modalContent');
@@ -114,12 +135,36 @@ function mealRecipeModal(item) {
   document.body.style.overflow = 'hidden';
 }
 
-const closeBtn = document.getElementById('closeBtn');
-closeBtn.addEventListener('click', closeModal);
-
+//Close The Modal
 function closeModal(e) {
   let modalContainer = document.getElementById('modalContainer');
   modalContainer.classList.remove('showModal');
   document.body.style.overflow = 'scroll';
   e.preventDefault();
 }
+
+//Notification for Search Result
+function resultContainer(className, icon, message) {
+  let msgContainer = document.getElementById('msgContainer');
+  msgContainer.innerHTML = `
+    <p class='alert ${className}'>${icon} ${message}</p>
+  `;
+
+  setTimeout(function () {
+    let alert = document.querySelector('.alert');
+    alert.remove();
+    msgContainer.innerHTML = '';
+  }, 5000);
+}
+
+//Footer Content
+function footerText() {
+  let footer = document.getElementById('footerContainer');
+  let date = new Date().getFullYear();
+
+  footer.innerHTML = `
+  <p>Designed & Developed by Trevin Shu &copy; ${date}</p>
+  `;
+}
+
+footerText();
