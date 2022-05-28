@@ -146,6 +146,7 @@ main {
   .recipeContainer {
     display: grid;
     margin: 1rem;
+    padding-bottom: 1rem;
     gap: 1rem;
 
     .recipeItem {
@@ -296,9 +297,9 @@ main {
   background-color: #fefefe;
   text-align: center;
   width: 100vw;
-  padding-block: 0.75rem;
+  padding: 0.75rem 1rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
 //Media Query for when the page is greater than or equal to 750px
@@ -318,6 +319,10 @@ main {
         }
       }
     }
+  }
+
+  .footerContainer {
+    letter-spacing: 6px;
   }
 }
 

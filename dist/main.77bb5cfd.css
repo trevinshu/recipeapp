@@ -194,6 +194,7 @@ main .msgContainer i {
 main .recipeContainer {
   display: grid;
   margin: 1rem;
+  padding-bottom: 1rem;
   gap: 1rem;
 }
 main .recipeContainer .recipeItem img {
@@ -321,9 +322,9 @@ main .showModal {
   background-color: #fefefe;
   text-align: center;
   width: 100vw;
-  padding-block: 0.75rem;
+  padding: 0.75rem 1rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
 @media only screen and (min-width: 750px) {
@@ -333,6 +334,10 @@ main .showModal {
   main .modalContainer .modal .modalContent h2 {
     text-transform: uppercase;
     letter-spacing: 3px;
+  }
+
+  .footerContainer {
+    letter-spacing: 6px;
   }
 }
 @media only screen and (min-width: 1200px) {
