@@ -16,6 +16,7 @@
 - JavaScript
 - SCSS
 - Google Fonts
+- Undraw (Banner Image)
 - Parcel Bundler
 - NPM
 - TheMealDB API (Recipe Data)
