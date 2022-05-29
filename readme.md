@@ -6,7 +6,11 @@
 
 ## Screenshot:
 
+![](src/img/app-mockup.png?raw=true)
+
 ## View Live:
+
+https://trevins-recipe-app.netlify.app/
 
 ## Languages, Tools, Techniques & Packages Used:
 
