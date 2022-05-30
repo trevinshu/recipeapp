@@ -421,7 +421,7 @@ main .showModal {
   }
   main .recipeContainer .recipeItem img {
     border-radius: 2rem;
-    width: 50%;
+    width: 40%;
   }
   main .recipeContainer .recipeItem .recipeContent {
     display: flex;

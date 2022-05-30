@@ -425,7 +425,7 @@ main {
         flex-direction: column;
         img {
           border-radius: 2rem;
-          width: 50%;
+          width: 40%;
         }
 
         .recipeContent {
@@ -489,6 +489,7 @@ main {
   }
 }
 
+//Media Query for when the page is greater than or equal to 1920px
 @media only screen and (min-width: 1920px) {
   main {
     .recipeContainer {
@@ -496,36 +497,3 @@ main {
     }
   }
 }
-
-// //Media Query for when the page is greater than or equal to 1900px
-// @media only screen and (min-width: 1900px) {
-//   main {
-//     .modalContainer {
-//       .closeBtn {
-//         right: 300px;
-//       }
-//     }
-//   }
-// }
-
-// //Media Query for when the page is greater than or equal to 2250px
-// @media only screen and (min-width: 2250px) {
-//   main {
-//     .modalContainer {
-//       .closeBtn {
-//         right: 350px;
-//       }
-//     }
-//   }
-// }
-
-// //Media Query for when the page is greater than or equal to 2600px
-// @media only screen and (min-width: 2600px) {
-//   main {
-//     .modalContainer {
-//       .closeBtn {
-//         right: 400px;
-//       }
-//     }
-//   }
-// }
