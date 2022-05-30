@@ -1,4 +1,6 @@
 @use '_reset';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
 
 //Set base Font
 * {
@@ -17,7 +19,6 @@ body {
   min-height: 100vh;
   min-height: fill-available;
   min-height: -webkit-fill-available;
-  margin: 2rem 0.75rem;
 }
 
 //Reset Buttons
@@ -151,7 +152,6 @@ main {
 
     i {
       color: #0b1b2d;
-      padding-right: 0.5rem;
     }
   }
 
@@ -221,8 +221,8 @@ main {
 
     .closeBtn {
       position: absolute;
-      top: 1%;
-      right: 8%;
+      top: 2%;
+      right: 5%;
       font-size: 1.75rem;
       color: #0b1b2d;
     }
@@ -371,6 +371,7 @@ main {
     }
   }
   main {
+    margin: 1rem 1.5rem;
     .searchContainer {
       .searchInput {
         width: 50%;

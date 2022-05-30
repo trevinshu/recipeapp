@@ -995,7 +995,7 @@ function _getRecipeBySearchTerm() {
 
             if (searchResponse) {
               searchResponse.forEach(function (meal) {
-                html += "\n      <div class=\"recipeItem\" data-id=\"".concat(meal.idMeal, "\">\n        <img src=\"").concat(meal.strMealThumb, "\" alt=\"\" />\n        <div class=\"recipeContent\">\n          <h2>").concat(meal.strMeal, "</h2>\n          <button id=\"viewRecipeBtn\" class=\"viewRecipeBtn\" href=\"#\">View Recipe</button>\n        </div>\n      </div>\n      ");
+                html += "\n      <div class=\"recipeItem\" data-id=\"".concat(meal.idMeal, "\">\n        <img src=\"").concat(meal.strMealThumb, "\" alt=\"Picture of Recipe\" />\n        <div class=\"recipeContent\">\n          <h2>").concat(meal.strMeal, "</h2>\n          <button id=\"viewRecipeBtn\" class=\"viewRecipeBtn\" href=\"#\">View Recipe</button>\n        </div>\n      </div>\n      ");
               });
               resultContainer('successMsg', '<i class="fa-solid fa-badge-check"></i>', "Search Results for ".concat(searchTerm));
               recipeContainer.innerHTML = html;
@@ -1080,7 +1080,7 @@ function mealRecipeModal(item) {
 
   console.log(item.strYoutube);
   var instructions = item.strInstructions;
-  var html = "\n  <h2>".concat(item.strMeal, "</h2>\n  <p><span>Cuisine: </span>").concat(item.strArea, "</p>\n  <img src=\"").concat(item.strMealThumb, "\"/>\n  <h3>Ingredients:</h3>\n  <ul>\n    ").concat(ingredients.map(function (ingredient) {
+  var html = "\n  <h2>".concat(item.strMeal, "</h2>\n  <p><span>Cuisine: </span>").concat(item.strArea, "</p>\n  <img src=\"").concat(item.strMealThumb, "\" alt=\"Picture of Recipe\"/>\n  <h3>Ingredients:</h3>\n  <ul>\n    ").concat(ingredients.map(function (ingredient) {
     return "<li>".concat(ingredient, "</li>");
   }).join(''), "\n  </ul>\n  <h3>Directions:</h3>\n  <p>").concat(instructions.split('.').join('. <br/> <br/>'), "</p>\n  <h3>Watch Recipe:</h3>\n  <div class=\"videoContainer\">\n    <iframe class=\"recipeVideo\" src=\"https://www.youtube.com/embed/").concat(item.strYoutube.slice(-11), "\" allow=\"fullscreen;\"></iframe>\n  </div>\n  ");
   modalContent.innerHTML = html;
@@ -1143,7 +1143,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57162" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59698" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

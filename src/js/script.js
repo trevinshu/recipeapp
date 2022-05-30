@@ -67,7 +67,7 @@ async function getRecipeBySearchTerm(searchTerm) {
       searchResponse.forEach((meal) => {
         html += `
       <div class="recipeItem" data-id="${meal.idMeal}">
-        <img src="${meal.strMealThumb}" alt="" />
+        <img src="${meal.strMealThumb}" alt="Picture of Recipe" />
         <div class="recipeContent">
           <h2>${meal.strMeal}</h2>
           <button id="viewRecipeBtn" class="viewRecipeBtn" href="#">View Recipe</button>
@@ -116,7 +116,7 @@ function mealRecipeModal(item) {
   let html = `
   <h2>${item.strMeal}</h2>
   <p><span>Cuisine: </span>${item.strArea}</p>
-  <img src="${item.strMealThumb}"/>
+  <img src="${item.strMealThumb}" alt="Picture of Recipe"/>
   <h3>Ingredients:</h3>
   <ul>
     ${ingredients.map((ingredient) => `<li>${ingredient}</li>`).join('')}

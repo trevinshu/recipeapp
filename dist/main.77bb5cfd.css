@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
 /* Box sizing rules */
 *,
 *::before,
@@ -87,7 +89,6 @@ body {
   min-height: 100vh;
   min-height: fill-available;
   min-height: -webkit-fill-available;
-  margin: 2rem 0.75rem;
 }
 
 button {
@@ -204,7 +205,6 @@ main .msgContainer .errorMsg {
 }
 main .msgContainer i {
   color: #0b1b2d;
-  padding-right: 0.5rem;
 }
 main .recipeContainer {
   display: grid;
@@ -261,8 +261,8 @@ main .modalContainer {
 }
 main .modalContainer .closeBtn {
   position: absolute;
-  top: 1%;
-  right: 8%;
+  top: 2%;
+  right: 5%;
   font-size: 1.75rem;
   color: #0b1b2d;
 }
@@ -374,6 +374,9 @@ main .showModal {
     width: 20vw;
   }
 
+  main {
+    margin: 1rem 1.5rem;
+  }
   main .searchContainer .searchInput {
     width: 50%;
   }
