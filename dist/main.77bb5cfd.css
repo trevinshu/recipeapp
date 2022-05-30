@@ -87,6 +87,7 @@ body {
   min-height: 100vh;
   min-height: fill-available;
   min-height: -webkit-fill-available;
+  margin: 2rem 1rem;
 }
 
 button {
@@ -166,19 +167,26 @@ main .categoryContainer .categoryBtn {
   text-align: center;
   color: #0b1b2d;
   letter-spacing: 5px;
-  font-weight: 400;
+  font-weight: 700;
   cursor: pointer;
 }
 main .categoryContainer .categoryBtn:hover {
   background-color: #adc6ff;
+}
+main .msgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 main .msgContainer .successMsg {
   background-color: #fff;
   border-left: solid rgb(152, 245, 152) 10px;
   border-radius: 0 1rem 1rem 0;
   box-shadow: rgba(11, 27, 45, 0.24) 0px 3px 8px;
-  letter-spacing: 3px;
-  text-align: center;
+  letter-spacing: 7px;
+  font-size: 1rem;
+  text-align: left;
   padding: 1rem 2rem;
   margin: 1rem;
   text-transform: uppercase;
@@ -200,8 +208,8 @@ main .msgContainer i {
 }
 main .recipeContainer {
   display: grid;
-  margin: 1rem;
-  padding-bottom: 1rem;
+  margin: 2rem;
+  padding-bottom: 3rem;
   gap: 1rem;
 }
 main .recipeContainer .recipeItem img {
@@ -247,14 +255,14 @@ main .modalContainer {
   border-radius: 1rem;
   width: 100%;
   height: 100%;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   overflow-y: scroll;
   visibility: hidden;
 }
 main .modalContainer .closeBtn {
   position: absolute;
-  top: 14px;
-  right: 25px;
+  top: 1%;
+  right: 8%;
   font-size: 1.75rem;
   color: #0b1b2d;
 }
@@ -262,7 +270,7 @@ main .modalContainer .modal {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  padding-bottom: 3rem;
 }
 main .modalContainer .modal .modalContent h2 {
   text-align: center;
@@ -326,21 +334,34 @@ main .showModal {
 
 .footerContainer {
   position: fixed;
+  z-index: 15;
   bottom: 0;
   background-color: #fefefe;
   text-align: center;
-  width: 100vw;
+  width: 100%;
   padding: 0.75rem 1rem;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: 640px) {
   main .recipeContainer {
     grid-template-columns: repeat(2, 1fr);
   }
   main .modalContainer .modal .modalContent h2 {
     text-transform: uppercase;
+    padding-inline: 3rem;
+    letter-spacing: 3px;
+  }
+
+  .footerContainer {
+    letter-spacing: 6px;
+  }
+}
+@media only screen and (min-width: 924px) {
+  main .modalContainer .modal .modalContent h2 {
+    text-transform: uppercase;
+    padding-inline: 5rem;
     letter-spacing: 3px;
   }
 
@@ -356,67 +377,106 @@ main .showModal {
   main .searchContainer .searchInput {
     width: 50%;
   }
+  main .searchContainer .searchInput {
+    text-align: center;
+    font-size: 1.4rem;
+  }
   main .searchContainer .searchInput::placeholder {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   main .searchContainer .searchBtn {
     width: 50%;
+    height: 5vh;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 8px;
   }
   main .categoryContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
+  main .categoryContainer .categoryBtn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
   main .msgContainer {
     margin: 0 auto;
     width: 50vw;
+    font-weight: 700;
   }
   main .msgContainer .alert {
     margin-bottom: 2rem;
   }
   main .recipeContainer {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    place-content: center;
+    gap: 2rem;
+  }
+  main .recipeContainer .recipeItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  main .recipeContainer .recipeItem img {
+    border-radius: 2rem;
+    width: 50%;
+  }
+  main .recipeContainer .recipeItem .recipeContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  main .recipeContainer .recipeItem .recipeContent h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    padding-bottom: 1.5rem;
+    width: 550px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  main .recipeContainer .recipeItem .recipeContent button {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 8px;
   }
   main .modalContainer {
     background-color: rgba(0, 0, 0, 0.75);
     height: calc(100vh + 5px);
     border-radius: 0;
+    z-index: 100;
     display: grid;
     place-items: center;
   }
   main .modalContainer .closeBtn {
     position: absolute;
-    top: 40px;
-    right: 270px;
-    font-size: 2.5rem;
+    z-index: 5;
+    top: 4%;
+    right: 27%;
+    margin-left: 1rem;
+    font-size: 2rem;
     color: #0b1b2d;
   }
   main .modalContainer .modal {
     box-shadow: rgba(11, 27, 45, 0.24);
     padding: 2rem;
-    margin-bottom: 3rem;
-    width: 75vw;
+    margin-block: 1rem;
+    width: 50vw;
     background-color: #fefefe;
     border-radius: 2rem;
   }
   main .modalContainer .modal .modalContent h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
   }
 }
-@media only screen and (min-width: 1900px) {
-  main .modalContainer .closeBtn {
-    right: 300px;
-  }
-}
-@media only screen and (min-width: 2250px) {
-  main .modalContainer .closeBtn {
-    right: 350px;
-  }
-}
-@media only screen and (min-width: 2600px) {
-  main .modalContainer .closeBtn {
-    right: 400px;
+@media only screen and (min-width: 1920px) {
+  main .recipeContainer {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
